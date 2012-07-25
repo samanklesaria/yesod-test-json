@@ -7,7 +7,10 @@ module Yesod.Test.Json (
 	assertString,
 	assertOK,
 	assertJSON,
+	Session(..),
+	H.Assertion,
 	module Test.Hspec,
+	module Data.Aeson
 	) where
 import qualified Test.HUnit as H
 import qualified Data.ByteString.Lazy.Char8 as L8
