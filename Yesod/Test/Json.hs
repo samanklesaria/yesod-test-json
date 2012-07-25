@@ -1,4 +1,7 @@
+-- | Yesod.Test.Json provides convenience functions for working
+--   with Test.Hspec and Network.Wai.Test on JSON data.
 module Yesod.Test.Json (
+	testApp,
 	APIFunction,
 	assertBool,
 	assertString,
