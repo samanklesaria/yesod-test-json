@@ -10,7 +10,8 @@ module Yesod.Test.Json (
 	Session(..),
 	H.Assertion,
 	module Test.Hspec,
-	module Data.Aeson
+	module Data.Aeson,
+        SResponse(..)
 	) where
 import qualified Test.HUnit as H
 import qualified Data.ByteString.Lazy.Char8 as L8
@@ -28,9 +29,9 @@ import Data.Conduit.List
 
 -- | A request to your server. 
 type APIFunction = ByteString -- ^ method
-				   -> [Text] -- ^ path
-				   -> Value -- JSON data
-				   -> Session SResponse
+                   -> [Text] -- ^ path
+                   -> Maybe Value -- JSON data
+                   -> Session SResponse
 
 -- Assert a boolean value
 assertBool :: String -> Bool -> Session ()
@@ -63,7 +64,7 @@ assertJSON f SResponse{simpleBody = lbs} = do
 
 -- | Make a request to your server
 apiRequest :: AppConfig env extra -> APIFunction
-apiRequest conf m p x = srequest $ SRequest r (encode x) where
+apiRequest conf m p x = srequest $ SRequest r (maybe L.empty encode x) where
     r = defaultRequest {
         serverPort = appPort conf,
         requestBody = sourceList . L.toChunks $ encode x,

@@ -2,7 +2,7 @@
 -- documentation, see http://haskell.org/cabal/users-guide/
 
 name:                yesod-test-json
-version:             0.1.0.0
+version:             0.2.0.0
 synopsis:            Utility functions for testing JSON web services written in Yesod
 description:         yesod-test-json provides combinators for using the hspec and wai-test libraries together.
                      It is meant to be used like yesod-test, but for web services as opposed to web applications.
